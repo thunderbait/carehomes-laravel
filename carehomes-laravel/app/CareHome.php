@@ -23,8 +23,28 @@ class CareHome extends Model
         Relationship: One to Many
         Return: Collection
     */
-    public function contact() 
+    public function contacts() 
     {
         return $this->hasMany(Contact::class);
-    }        
+    }
+
+/*
+        Relationship: One to Many
+        Return: Collection
+    */
+    public function types() 
+    {
+        return $this->hasMany(Type::class);
+    }
+
+/*
+        Relationship: One to Many
+        Return: Collection
+    */
+    public function specialisms() 
+    {
+        return $this->hasMany(Specialism::class);
+    }
+
+
 }
