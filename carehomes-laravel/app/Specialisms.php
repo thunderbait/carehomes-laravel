@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Specialisms extends Model
 {
     //
+    protected $table = 'specialisms';
 }
