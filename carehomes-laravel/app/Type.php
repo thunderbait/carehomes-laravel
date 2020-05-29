@@ -8,8 +8,6 @@ class Type extends Model
 {
     //
 
-    protected $table = 'types';
-
     public function carehomes()
     {
         return $this->belongsToMany('App\Carehome');

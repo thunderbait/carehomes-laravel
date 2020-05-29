@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Carehome extends Model
 {
     //
-    protected $table = 'carehomes';
 
      public function location()
     {
