@@ -23,5 +23,17 @@ class Carehome extends Model
     {
         return $this->hasOne('App\Type');
     }
+
+    public function contacts()
+    {
+        return $this->hasMany('App\Contact');
+    }
+
+    public function specialisms()
+    {
+        return $this->belongsToMany('App\Specialism');
+    }
 }
+
+
 

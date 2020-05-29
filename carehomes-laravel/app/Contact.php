@@ -8,4 +8,9 @@ class Contact extends Model
 {
     //
     protected $table = 'contacts';
+
+    public function carehome()
+    {
+        return $this->belongsTo('App\Carehome');
+    }
 }
