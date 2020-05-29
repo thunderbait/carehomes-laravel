@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Types extends Model
+class Group extends Model
 {
     //
-
-    protected $table = 'types';
+    protected $table = 'groups';
 }
