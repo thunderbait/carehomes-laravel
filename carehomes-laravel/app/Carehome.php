@@ -16,12 +16,12 @@ class Carehome extends Model
 
     public function group()
     {
-        return $this->hasOne('App\Group');
+        return $this->belongsTo('App\Group');
     }
 
-    public function type()
+    public function types()
     {
-        return $this->hasOne('App\Type');
+        return $this->belongsToMany('App\Type');
     }
 
     public function contacts()

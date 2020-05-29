@@ -9,8 +9,8 @@ class Group extends Model
     //
     protected $table = 'groups';
 
-    public function carehome()
+    public function carehomes()
     {
-        return $this->belongsTo('App\Carehome');
+        return $this->hasMany('App\Carehome');
     }
 }
