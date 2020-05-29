@@ -9,4 +9,9 @@ class Type extends Model
     //
 
     protected $table = 'types';
+
+     public function carehome()
+    {
+        return $this->belongsTo('App\Carehome');
+    }
 }
