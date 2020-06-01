@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Carehome extends Model
 {
     protected $fillable = [
-        'name','number_beds','location_id','group_id','type_id','notes'
+        'name','number_beds','location_id','group_id','notes'
     ];
 
      public function location()
