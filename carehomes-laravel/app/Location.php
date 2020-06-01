@@ -8,7 +8,7 @@ class Location extends Model
 {
     protected $fillable = [
     	'name','local_authority'
-    	;
+    	];
 
      public function carehome()
     {
