@@ -10,8 +10,6 @@ class Location extends Model
     	'name','local_authority'
     	];
 
-    protected $fillable = ['name','location_authority'];
-
     public function carehome()
     {
         return $this->belongsTo('Carehome::class');
