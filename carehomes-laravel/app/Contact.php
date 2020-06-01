@@ -10,8 +10,6 @@ class Contact extends Model
     	'name','role','email','phone','linkedin','carehome_id'
     ];
 
-    protected $fillable = ['name','role','email','phone','linkedin','carehome_id'];
-
     public function carehome()
     {
         return $this->belongsTo('Carehome:class');
