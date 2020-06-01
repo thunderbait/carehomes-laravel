@@ -10,6 +10,6 @@ class Specialism extends Model
 
     public function carehomes()
     {
-        return $this->belongsToMany('App\Carehome');
+        return $this->belongsToMany('Carehome::class');
     }
 }

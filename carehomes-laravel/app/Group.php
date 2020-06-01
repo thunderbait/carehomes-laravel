@@ -10,6 +10,6 @@ class Group extends Model
 
     public function carehomes()
     {
-        return $this->hasMany('App\Carehome');
+        return $this->hasMany('Carehome::class');
     }
 }

@@ -10,27 +10,27 @@ class Carehome extends Model
 
      public function location()
     {
-        return $this->hasOne('App\Location');
+        return $this->hasOne('Location::class');
     }
 
     public function group()
     {
-        return $this->belongsTo('App\Group');
+        return $this->belongsTo('Group::class');
     }
 
     public function types()
     {
-        return $this->belongsToMany('App\Type');
+        return $this->belongsToMany('Type::class');
     }
 
     public function contacts()
     {
-        return $this->hasMany('App\Contact');
+        return $this->hasMany('Contact::class');
     }
 
     public function specialisms()
     {
-        return $this->belongsToMany('App\Specialism');
+        return $this->belongsToMany('Specialism::class');
     }
 }
 
