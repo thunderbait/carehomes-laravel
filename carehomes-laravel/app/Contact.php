@@ -8,7 +8,7 @@ class Contact extends Model
 {
     //
 
-    protected $fillable = ['name','role','email','phone','linkedin','care_home_id'];
+    protected $fillable = ['name','role','email','phone','linkedin','carehome_id'];
 
     public function carehome()
     {
