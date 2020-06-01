@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Carehome extends Model
 {
-    //
 
-     public function location()
+    protected $fillable = ['name','number_beds','location_id','group_id','notes'];
+
+    public function location()
     {
         return $this->hasOne('Location::class');
     }
@@ -32,8 +33,6 @@ class Carehome extends Model
     {
         return $this->belongsToMany('Specialism::class');
     }
-
-    protected $fillable = ['name','number_beds','location_id','group_id','type_id','notes'];
 }
 
 
