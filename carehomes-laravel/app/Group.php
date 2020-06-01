@@ -8,8 +8,6 @@ class Group extends Model
 {
     protected $fillable = 'name';
 
-    protected $fillable = ['name'];
-
     public function carehomes()
     {
         return $this->hasMany('Carehome::class');
