@@ -12,4 +12,6 @@ class Specialism extends Model
     {
         return $this->belongsToMany('Carehome::class');
     }
+
+    protected $fillable = ['name'];
 }

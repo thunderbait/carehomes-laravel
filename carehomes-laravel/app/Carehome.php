@@ -32,6 +32,8 @@ class Carehome extends Model
     {
         return $this->belongsToMany('Specialism::class');
     }
+
+    protected $fillable = ['name','number_beds','location_id','group_id','type_id','notes'];
 }
 
 

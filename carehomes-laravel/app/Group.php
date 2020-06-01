@@ -12,4 +12,6 @@ class Group extends Model
     {
         return $this->hasMany('Carehome::class');
     }
+
+    protected $fillable = ['name']
 }

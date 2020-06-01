@@ -12,4 +12,6 @@ class Location extends Model
     {
         return $this->belongsTo('Carehome::class');
     }
+
+    protected $fillable = ['name','location_authority'];
 }
