@@ -16,11 +16,10 @@ class CreateCarehomesTable extends Migration
         Schema::create('carehomes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('name');
+            $table->longText('name');
             $table->integer('number_beds');
             $table->integer('location_id');
             $table->integer('group_id');
-            $table->integer('type_id');
             $table->longText('notes');
 
         });
