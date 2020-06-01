@@ -20,7 +20,7 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('linkedin');
-            $table->integer('care_home_id');
+            $table->integer('carehome_id');
             $table->timestamps();
         });
     }
