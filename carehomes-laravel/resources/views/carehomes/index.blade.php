@@ -29,9 +29,9 @@
 
         <div class="row">
 
-            <div class="row justify-content-center">
+            <!-- <div class="row justify-content-center">
                 {{ $carehomes->links() }}
-            </div>
+            </div> -->
             <table class="table table-striped">
                 <thead>
                 <tr>

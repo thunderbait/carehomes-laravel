@@ -10,7 +10,7 @@ class Type extends Model
 
     public function carehomes()
     {
-        return $this->belongsToMany('Carehome::class');
+        return $this->belongsToMany('App\Carehome');
     }
 
 }
