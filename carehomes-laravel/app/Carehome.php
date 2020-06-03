@@ -33,6 +33,8 @@ class Carehome extends Model
         return $this->belongsToMany('App\Specialism');
     }
 
+
+
 }
 
 

@@ -39,5 +39,4 @@ class CarehomeController extends Controller
         return view('carehomes.show', compact('carehome'));
     }
 
-
 }

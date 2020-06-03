@@ -1,4 +1,4 @@
-<!--    -->@extends('layouts.app')
+@extends('layouts.app')
 
 @section('title')
     <title>{{$carehome->name}}</title>
@@ -20,7 +20,7 @@
         
         <div class="col-12">
         	<p><b>Number of Beds:</b> {{$carehome->number_beds}}</p>
-        	<p><b>Location ID:</b> {{$carehome->location}}</p>
+        	<p><b>Location ID:</b> {{$carehome->location->name}}</p>
         	<p><b>Group ID:</b> {{$carehome->group_id}}</p>
             <p><b>Notes:</b> {{$carehome->notes}}</p>
         </div>
