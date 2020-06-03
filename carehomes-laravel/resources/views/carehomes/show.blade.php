@@ -19,9 +19,10 @@
         <h1>{{$carehome->name}}</h1>
         
         <div class="col-12">
-        	<p><b>Number of Beds:</b> {{$carehome->number_beds}}</p>
-        	<p><b>Location ID:</b> {{$carehome->location->name}}</p>
-        	<p><b>Group ID:</b> {{$carehome->group_id}}</p>
+        	
+            <p><b>Group ID:</b> {{$carehome->group_id}}</p>
+        	<p><b>Location:</b> {{$carehome->location->name}} , {{$carehome->location->local_authority}}</p>
+            <p><b>Number of Beds:</b> {{$carehome->number_beds}}</p>
             <p><b>Notes:</b> {{$carehome->notes}}</p>
         </div>
 
