@@ -25,4 +25,6 @@
             <p><b>Notes:</b> {{$carehome->notes}}</p>
         </div>
 
+    </div>
+
 @endsection
