@@ -8,6 +8,14 @@
 
     <div class="container">
 
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item"><a href="/carehomes">Carehome Database</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{$carehome->name}}</li>
+          </ol>
+        </nav>
+
         <div class="row">
             @if(session()->get('success'))
                 <div class="alert alert-success">
@@ -20,7 +28,7 @@
         
         <div class="col-12">
         	
-            <p><b>Group ID:</b> {{$carehome->group->name}}</p>
+            <p><b>Provider:</b> {{$carehome->group->name}}</p>
         	<p><b>Location:</b> {{$carehome->location->name}} , {{$carehome->location->local_authority}}</p>
             <p><b>Number of Beds:</b> {{$carehome->number_beds}}</p>
             <p><b>Notes:</b> {{$carehome->notes}}</p>

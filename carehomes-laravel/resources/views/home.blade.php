@@ -3,7 +3,13 @@
 @section('content')
 <div class="container">
 
-    <h2> Toolz </h2>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+      </ol>
+    </nav>
+
+    <h2> Tools </h2>
 
     <div class="row justify-content-center">
         <div class="col-md-3">

@@ -3,20 +3,24 @@
 @section('content')
 
     <div class="container">
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/home">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Carehome Database</li>
+          </ol>
+        </nav>
         
         <div class="row">
-            <div class="col-3" style="margin-bottom:20px">
+
+            <div class="col-6" style="margin-bottom:20px">
                 <h1>Carehomes</h1>
             </div>
 
-            <div class="col-9">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <input class="form-control" type="search" name="q" placeholder="Search here...">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            {{ $carehomes->links() }}
         </div>
 
         <div class="row">
