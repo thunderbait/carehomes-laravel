@@ -12,7 +12,7 @@ class Contact extends Model
 
     public function carehome()
     {
-        return $this->belongsTo('Carehome:class');
+        return $this->belongsTo('App\Carehome');
     }
 
 }

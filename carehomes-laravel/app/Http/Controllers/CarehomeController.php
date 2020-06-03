@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class CarehomeController extends Controller
 {
-	public function index(Request $request)
+	/// Authentication Middleware
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /// List of all carehomes in the DB, sorted by ascending order on their Name
+    public function index(Request $request)
 	{
         $query = Carehome::orderBy('name', 'asc');
 
@@ -28,7 +35,8 @@ class CarehomeController extends Controller
     
     public function show($id)
     {
-        $venue = Carehome::findOrFail($id);
+        $carehome = Carehome::findOrFail($id);
         return view('carehomes.show', compact('carehome'));
     }
+
 }
