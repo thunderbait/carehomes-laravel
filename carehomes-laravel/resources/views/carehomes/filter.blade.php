@@ -29,8 +29,9 @@
 				    <div class="form-group col-md-4">
 				      <label for="location_authority">Location Authority</label>
 				      <select id="location_authority" class="form-control">
-				        <option selected>Choose...</option>
-				        <option>...</option>
+				      	<!-- @foreach(local authority )  -->
+				        <option selected>{{$loc_auth}}</option>
+				        @endforeach
 				      </select>
 				    </div>					
 				</div>

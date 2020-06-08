@@ -39,4 +39,10 @@ class CarehomeController extends Controller
         return view('carehomes.show', compact('carehome'));
     }
 
+    public function filter()
+    {
+        
+        return view('carehomes.filter', compact('carehome'));
+    }
+
 }

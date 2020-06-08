@@ -31,6 +31,32 @@
             @endif
         </div>
 
+        <div class="container">
+            <form action="/search">
+                
+                <div class="form-row">
+                    <!-- Input for Minimum Number of Beds -->
+                    <div class="form-group col-md-4">
+                      <label for="number_beds">Min. Number of Beds</label>
+                      <input type="number_beds" class="form-control" id="number_beds" placeholder="Min. Number of Beds">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <!-- Input for Location Authority (Dropdown) -->
+                    <div class="form-group col-md-4">
+                      <label for="location_authority">Location Authority</label>
+                      <select id="location_authority" class="form-control">
+                        @foreach($carehomes->location->local_authority as $loc_auth)
+                        <option selected>{{$loc_auth}}</option>
+                        @endforeach
+                      </select>
+                    </div>                  
+                </div>
+
+            </form>
+        </div>
+
         <div class="row">
 
             <!-- <div class="row justify-content-center">
