@@ -6,6 +6,7 @@ use App\Carehome;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Location;
 
 class CarehomeController extends Controller
 {
@@ -39,10 +40,48 @@ class CarehomeController extends Controller
         return view('carehomes.show', compact('carehome'));
     }
 
-    public function filter()
+    public function search(Request $request)
     {
+        // discover the unique local_authority from the locations
+        $authorities = Location::distinct('local_authority')
+            ->orderBy('local_authority')
+            ->get(['id','local_authority'])
+            ->map(function ($a) {
+                return $a->local_authority;
+            });
+
+        $authority = $request->get('location_authority');
+
         
-        return view('carehomes.filter', compact('carehome'));
+
+        if ($authority)
+        {
+            // restrict the search of the carehomes to only include those with a location in the given authority
+
+
+            // 'with' -> where you are adding a clause to the condition - i.e., search for the location's that have the authority.
+        }
+
+       
+    }
+
+    public function filter(Request $request)
+    {
+        // discover the unique local_authority from the locations
+        $authorities = Location::distinct('local_authority')
+            ->orderBy('local_authority')
+            ->get(['local_authority'])
+            ->map(function ($a) {
+                return $a->local_authority;
+            });
+
+        $authority = $request->get('location_authority');
+        $carehomesQuery = DB::table('carehomes')
+            ->where
+
+        return $carehomes;
+
+        // return view('carehomes.filter');
     }
 
 }

@@ -11,7 +11,8 @@
           </ol>
         </nav>
 
-        <h1>Advanced Carehome Filter</h1>
+        <h3>Advanced Carehome Filter</h3>
+        <br>
 
         <div class="container">
         	<form action="/search">
@@ -28,13 +29,15 @@
 					<!-- Input for Location Authority (Dropdown) -->
 				    <div class="form-group col-md-4">
 				      <label for="location_authority">Location Authority</label>
-				      <select id="location_authority" class="form-control">
-				      	<!-- @foreach(local authority )  -->
-				        <option selected>{{$loc_auth}}</option>
-				        @endforeach
+				      <select name="location_authority" id="location_authority" class="form-control">
+				      	
+				        <option selected>authority</option>
+				       
 				      </select>
 				    </div>					
 				</div>
+
+				<button type="submit" class="btn btn-primary">Submit</button>
 
         	</form>
         </div>
