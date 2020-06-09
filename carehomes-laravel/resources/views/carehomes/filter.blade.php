@@ -30,9 +30,9 @@
 				    <div class="form-group col-md-4">
 				      <label for="location_authority">Location Authority</label>
 				      <select name="location_authority" id="location_authority" class="form-control">
-				      	
-				        <option selected>authority</option>
-				       
+				      	@foreach($authorities ?? '' as $authority)
+				        <option selected>$authority</option>
+				       	@endforeach
 				      </select>
 				    </div>					
 				</div>

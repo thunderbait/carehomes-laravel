@@ -72,16 +72,15 @@ class CarehomeController extends Controller
             ->orderBy('local_authority')
             ->get(['local_authority'])
             ->map(function ($a) {
-                return $a->local_authority;
+                return $a;
             });
 
         $authority = $request->get('location_authority');
-        $carehomesQuery = DB::table('carehomes')
-            ->where
+        $carehomesQuery = Carehome::query();
 
-        return $carehomes;
+        return $authorities;
 
-        // return view('carehomes.filter');
+        //return view('carehomes.filter');
     }
 
 }
