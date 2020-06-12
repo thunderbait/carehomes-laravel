@@ -12,7 +12,7 @@ class Location extends Model
 
     public function carehome()
     {
-        return $this->belongsTo('Carehome::class');
+        return $this->hasMany(Carehome::class);
     }
 
 }
