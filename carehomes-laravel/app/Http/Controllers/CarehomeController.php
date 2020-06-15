@@ -35,18 +35,22 @@ class CarehomeController extends Controller
 
     public function filter(Request $request)
     {
+        $local_authorities = ; /// SELECT distinct local_authorities.name FROM `carehomes-db`.local_authorities;
+
+        $number_beds = $request->get('number_beds');
+
         // discover the unique local_authority from the locations
-        $authorities = Location::distinct('local_authority')
-            ->orderBy('local_authority')
-            ->get(['local_authority'])
-            ->map(function ($a) {
-                return $a;
-            });
+        // $authorities = Location::distinct('local_authority')
+        //     ->orderBy('local_authority')
+        //     ->get(['local_authority'])
+        //     ->map(function ($a) {
+        //         return $a;
+        //     });
 
-        $authority = $request->get('location_authority');
-        $carehomesQuery = Carehome::query();
+        // $authority = $request->get('location_authority');
+        // $carehomesQuery = Carehome::query();
 
-        return $authorities;
+        // return $authorities;
 
         //return view('carehomes.filter');
     }
