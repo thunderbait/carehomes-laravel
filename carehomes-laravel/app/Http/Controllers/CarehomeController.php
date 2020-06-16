@@ -24,6 +24,7 @@ class CarehomeController extends Controller
 
         $carehomes = $query->paginate(25);
 
+
         return view('carehomes.index', compact('carehomes'));
 	}
     
@@ -35,9 +36,8 @@ class CarehomeController extends Controller
 
     public function filter(Request $request)
     {
-        $local_authorities = ; /// SELECT distinct local_authorities.name FROM `carehomes-db`.local_authorities;
 
-        $number_beds = $request->get('number_beds');
+        $local_authorities = DB::table('local_authorities')->get();
 
         // discover the unique local_authority from the locations
         // $authorities = Location::distinct('local_authority')
@@ -52,7 +52,32 @@ class CarehomeController extends Controller
 
         // return $authorities;
 
-        //return view('carehomes.filter');
+        return view('carehomes.filter', ['local_authorities' => $local_authorities]);
+    }
+
+    public function search(Request $request)
+    {
+        $local_auth = $request->get('local_authority');
+        $number_beds = $request->get('number_beds');
+
+        /// $local_auth_id =  Query - From local_authorities table get the id of the entry with name $local_auth 
+        $local_auth_id = DB::table('local_authorities')
+            ->where('name', 'LIKE', "%{$local_auth}")
+            ->get(['id']);  
+        /// $local_auth_locations = [From locations table get the id's of all carehomes with local_auhority_id = $local_auth_id]
+        $local_auth_locations =  DB::table('locations')
+            ->orderBy('name')
+            ->where('local_auhority_id', 'LIKE', "%{local_auth_id}")
+            ->map(function ($a) {
+                return $a;
+            });
+        /// Query the carehomes table
+        /// SELECT * FROM `carehomes-db`.carehomes where number_beds>$number_beds AND location_id is in $local_auth_locations;
+        $carehomes_query = DB::table('carehomes')
+            ->where('number_beds', '>', "%{number_beds}")
+            ->
+
+
     }
 
 }

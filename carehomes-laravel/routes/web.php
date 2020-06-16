@@ -23,5 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('carehomes/filter', 'CarehomeController@filter')->name('filter');
 
+Route::get('carehomes/search', 'CarehomeController@search')->name('search');
+
 //Carehomes
 Route::resource('carehomes', 'CarehomeController');

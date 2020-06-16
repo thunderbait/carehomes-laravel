@@ -15,23 +15,23 @@
         <br>
 
         <div class="container">
-        	<form action="/search">
+        	<form action="/carehomes/search">
         		
         		<div class="form-row">
         			<!-- Input for Minimum Number of Beds -->
 				    <div class="form-group col-md-4">
 				      <label for="number_beds">Min. Number of Beds</label>
-				      <input type="number_beds" class="form-control" id="number_beds" placeholder="Min. Number of Beds">
+				      <input name="number_beds" id="number_beds" class="form-control" placeholder="Min. Number of Beds">
 				    </div>
 				</div>
 				
 				<div class="form-row">
 					<!-- Input for Location Authority (Dropdown) -->
 				    <div class="form-group col-md-4">
-				      <label for="location_authority">Location Authority</label>
-				      <select name="location_authority" id="location_authority" class="form-control">
-				      	@foreach($authorities ?? '' as $authority)
-				        <option selected>$authority</option>
+				      <label for="local_authority">Local Authority</label>
+				      <select name="local_authority" id="local_authority" class="form-control" placeholder="Local Authority">
+				      	@foreach($local_authorities as $local_authority)
+				        <option selected>{{ $local_authority->name }}</option>
 				       	@endforeach
 				      </select>
 				    </div>					

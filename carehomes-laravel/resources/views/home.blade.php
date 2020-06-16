@@ -44,7 +44,7 @@
                 <h5 class="card-title">Tool 2</h5>
                 <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
                 <p class="card-text">Wow such text much php</p>
-                <a href="#" class="card-link">Disabled</a>
+                <a href="carehomes/filter" class="card-link">Filter</a>
             </div>
             </div>        
         </div>
