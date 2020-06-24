@@ -15,4 +15,9 @@ class Location extends Model
         return $this->hasMany(Carehome::class);
     }
 
+    public function carehome()
+    {
+        return $this->belongsTo(LocalAuthority::class);
+    }
+
 }
