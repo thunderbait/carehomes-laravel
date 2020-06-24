@@ -15,12 +15,12 @@ class CreateCarehomesTable extends Migration
     {
         Schema::create('carehomes', function (Blueprint $table) {
             $table->id();
+            $table->longText('name')->nullable(false);
+            $table->string('number_beds')->nullable();
+            $table->integer('location_id')->unsigned()->nullable();
+            $table->integer('group_id')->unsigned()->nullable();
+            $table->longText('notes')->nullable();
             $table->timestamps();
-            $table->longText('name');
-            $table->integer('number_beds');
-            $table->integer('location_id');
-            $table->integer('group_id');
-            $table->longText('notes');
 
         });
     }

@@ -15,9 +15,9 @@ class CreateCarehomeTypesTable extends Migration
     {
         Schema::create('carehome_types', function (Blueprint $table) {
             $table->id();
-            $table->integer('carehome_id');
-            $table->integer('type_id');
-            $table->timestamps();
+            $table->integer('carehome_id')->nullable()->unsigned();
+            $table->integer('type_id')->nullable()->unsigned();
+            
         });
     }
 
