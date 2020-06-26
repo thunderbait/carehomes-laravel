@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-3" style="margin-bottom:20px">
-                <h1>Carehomes</h1>
+                <h1>Groups</h1>
             </div>
 
             <div class="col-9">
@@ -27,34 +27,21 @@
         </div>
 
         <div class="row">
-
             <div class="row justify-content-center">
-                {{ $carehomes->links() }}
+                {{ $groups->links() }}
             </div>
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Group</th>
-                    <th>Location_id</th>
-                    
-                    <th>No.Beds</th>
-                    <th>Notes</th>
                 </tr>
                 </thead>
                 <tbody>
-                     @foreach($carehomes as $carehome)
+                     @foreach($groups as $group)
                 	<tr>
-                        <td>{{$carehome->id}}</td>
-                        <td>
-                            <a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a>
-                        </td>
-                        <td><a href="{{route('groups.show', $carehome->group_id)}}">{{$carehome->group->name}}</td>
-                        <td>{{$carehome->location_id}}</td>
-                
-                        <td>{{$carehome->number_beds}}</td>
-                        <td>{{$carehome->notes}}</td>
+                        <td><a href="{{route('groups.show', $group->id)}}">{{$group->id}}</td>
+                        <td>{{$group->name}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -64,7 +51,7 @@
         <button onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
 
         <div class="row justify-content-center">
-            {{ $carehomes->links() }}
+            {{ $groups->links() }}
         </div>
     </div>
 

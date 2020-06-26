@@ -8,6 +8,6 @@ class LocalAuthority extends Model
 {
     public function location()
     {
-        return $this->hasMany(Location::class);
+        return $this->hasMany('App\Location');
     }
 }

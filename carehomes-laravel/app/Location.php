@@ -12,12 +12,12 @@ class Location extends Model
 
     public function carehome()
     {
-        return $this->hasMany(Carehome::class);
+        return $this->hasMany('App\Carehome');
     }
 
     public function localAuthority()
     {
-        return $this->belongsTo(LocalAuthority::class);
+        return $this->belongsTo('App\LocalAuthority');
     }
 
 }
