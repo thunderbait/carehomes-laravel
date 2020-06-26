@@ -26,11 +26,13 @@
             @endif
         </div>
 
+        <div class="row justify-content-center">
+            {{ $carehomes->links() }}
+        </div>
+
         <div class="row">
 
-            <div class="row justify-content-center">
-                {{ $carehomes->links() }}
-            </div>
+
             <table class="table table-striped">
                 <thead>
                 <tr>

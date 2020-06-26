@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Location;
+use App\Contact;
 
 class CarehomeController extends Controller
 {
@@ -16,10 +17,7 @@ class CarehomeController extends Controller
         
         if ($searchTerm = $request->query('q'))
         {
-            $query->where('name', 'LIKE', "%{$searchTerm}%")
-                ->orWhereHas('user', function (Builder $subquery) use ($searchTerm) {
-                $subquery->where('name', 'LIKE', "%{$searchTerm}%");
-            });
+            $query->where('name', 'LIKE', "%{$searchTerm}%");
         }
 
         $carehomes = $query->paginate(25);
