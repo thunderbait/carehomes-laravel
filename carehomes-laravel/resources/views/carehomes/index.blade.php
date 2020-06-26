@@ -36,10 +36,10 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>No. Beds</th>
+                    <th>Group</th>
                     <th>Location_id</th>
-                    <th>Group_id</th>
                     <th>Type_id</th>
+                    <th>No.Beds</th>
                     <th>Notes</th>
                 </tr>
                 </thead>
@@ -50,10 +50,12 @@
                         <td>
                             <a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a>
                         </td>
-                        <td>{{$carehome->number_beds}}</td>
+                        <td><?php 
+                        $group = DB::table('groups')->where('id', "{$carehome->group_id}")->first();
+                        echo $group->name; ?></td>
                         <td>{{$carehome->location_id}}</td>
-                        <td>{{$carehome->group_id}}</td>
                         <td>{{$carehome->type_id}}</td>
+                        <td>{{$carehome->number_beds}}</td>
                         <td>{{$carehome->notes}}</td>
                     </tr>
                     @endforeach

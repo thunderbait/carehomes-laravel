@@ -4,5 +4,4 @@
 
     <title>{{$carehome->name}}</title>
 
-
 @endsection

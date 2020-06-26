@@ -13,18 +13,16 @@ class CarehomeController extends Controller
 	public function index(Request $request)
 	{
         $query = Carehome::orderBy('name', 'asc');
-
         
         if ($searchTerm = $request->query('q'))
         {
-            $query->where('name', 'LIKE', "%{$searchTerm}%")->orWhereHas('user', function (Builder $subquery) use ($searchTerm) {
+            $query->where('name', 'LIKE', "%{$searchTerm}%")
+                ->orWhereHas('user', function (Builder $subquery) use ($searchTerm) {
                 $subquery->where('name', 'LIKE', "%{$searchTerm}%");
             });
         }
 
         $carehomes = $query->paginate(25);
-
-
         return view('carehomes.index', compact('carehomes'));
 	}
     
@@ -55,8 +53,8 @@ class CarehomeController extends Controller
         return view('carehomes.filter', ['local_authorities' => $local_authorities]);
     }
 
-    // public function search(Request $request)
-    // {
+    public function search(Request $request)
+    {
     //     $local_auth = $request->get('local_authority');
     //     $number_beds = $request->get('number_beds');
 
@@ -87,6 +85,6 @@ class CarehomeController extends Controller
     //         ->
 
     //     /// At the end, I want to display the results in a view with the same layout as /carehomes/index.blade.php
-    // }
+    }
 
 }
