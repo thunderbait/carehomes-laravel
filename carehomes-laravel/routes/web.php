@@ -21,9 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Carehomes
+
 Route::get('carehomes/filter', 'CarehomeController@filter')->name('filter');
 
 Route::get('carehomes/search', 'CarehomeController@search')->name('search');
 
-//Carehomes
 Route::resource('carehomes', 'CarehomeController');
+
+//Groups
+Route::get('/groups', 'GroupController@index')->name('groups');
+
+Route::resource('groups', 'GroupController');

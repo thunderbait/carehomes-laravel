@@ -11,7 +11,7 @@ class Group extends Model
 
     public function carehomes()
     {
-        return $this->hasMany('Carehome::class');
+        return $this->hasMany('App\Carehome');
     }
 
 }
