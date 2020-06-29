@@ -3,6 +3,14 @@
 @section('content')
 
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Groups</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="container">
         <div class="row">
             <div class="col-3" style="margin-bottom:20px">
                 <h1>Groups</h1>
@@ -26,10 +34,11 @@
             @endif
         </div>
 
-        <div class="row">
-            <div class="row justify-content-center">
+        <div class="row justify-content-center">
                 {{ $groups->links() }}
-            </div>
+        </div>
+
+        <div class="row">
             <table class="table table-striped">
                 <thead>
                 <tr>

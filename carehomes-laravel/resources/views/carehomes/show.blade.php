@@ -3,6 +3,16 @@
 @section('content')
 
 <div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/carehomes">Carehomes</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{$carehome->name}}</li>
+        </ol>
+    </nav>
+</div>
+
+<!-- Carehome Jumbotron -->
+<div class="container">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">{{$carehome->name}}</h1>
@@ -11,8 +21,8 @@
     </div>
 </div>
 
+<!-- Carehome Details -->
 <div class="container">
-    <!-- Carehome Details -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -32,18 +42,13 @@
 </div>
 
 <div class="container">
-
-    <!-- Contact Details -->
-
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="https://www.kirkham-legal.co.uk/wp-content/uploads/2017/02/profile-placeholder.png" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">{{$carehome->contact->name}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="row">
+        @foreach($carehome->contacts as $contact)
+        <div class="col-3">
+            @include('carehomes.widgets.contacts')
         </div>
+        @endforeach
     </div>
 </div>
 
-</div>
 @endsection

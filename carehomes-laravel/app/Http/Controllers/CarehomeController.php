@@ -27,6 +27,7 @@ class CarehomeController extends Controller
     public function show($id)
     {
         $carehome = Carehome::findOrFail($id);
+        $return = (($carehome->number_beds * 365)*(92.5/100))*(65/100);
         return view('carehomes.show', compact('carehome'));
     }
 

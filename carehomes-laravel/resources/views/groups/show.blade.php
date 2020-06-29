@@ -2,6 +2,15 @@
 
 @section('content')
 
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/carehomes">Groups</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$group->name}}</li>
+            </ol>
+        </nav>
+    </div>
+
 <div class="container">
 
         <div class="jumbotron jumbotron-fluid">
@@ -33,8 +42,8 @@
                 <tbody>
                      @foreach($group->carehomes as $carehome)
                 	<tr>
-                        <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->id}}</a></td>
-                        <td>{{$carehome->name}}</td>
+                        <td>{{$carehome->id}}</td>
+                        <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a></td>
                         <td>{{$carehome->location->name}}</td>
                         <td>{{$carehome->number_beds}}</td>
                         <td>{{$carehome->notes}}</td>
