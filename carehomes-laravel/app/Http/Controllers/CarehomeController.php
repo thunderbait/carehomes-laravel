@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Carehome;
+use App\Group;
+use App\LocalAuthority;
+use App\Type;
+use App\Specialism;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,16 +18,20 @@ class CarehomeController extends Controller
 	public function index(Request $request)
 	{
         $query = Carehome::orderBy('name', 'asc');
-        
+
         if ($searchTerm = $request->query('q'))
         {
             $query->where('name', 'LIKE', "%{$searchTerm}%");
         }
 
         $carehomes = $query->paginate(25);
-        return view('carehomes.index', compact('carehomes'));
+
+        $local_authorities = LocalAuthority::orderBy('name', 'asc')->get();
+        $groups = Group::orderBy('name', 'asc')->get();
+
+        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups'));
 	}
-    
+
     public function show($id)
     {
         $carehome = Carehome::findOrFail($id);
@@ -75,7 +83,7 @@ class CarehomeController extends Controller
     //             return $a;
     //         });
 
-    //     /// Query the carehomes table, to find all carehomes with a location_id that is in $local_auth_locations 
+    //     /// Query the carehomes table, to find all carehomes with a location_id that is in $local_auth_locations
     //     /// I was thinking i could use the if(in_array) method
     //     /// Then, filter out all the carehomes with less than ($number_beds) beds
     //     /// SELECT * FROM `carehomes-db`.carehomes where number_beds>$number_beds AND location_id is in $local_auth_locations;

@@ -1,0 +1,30 @@
+.form-group {
+    display: inline-block;
+}
+
+.form-group label {
+    display: block;
+}
+
+form {
+    padding-bottom: 20px;
+}
+
+#filter {
+    display: none;
+}
+
+input {
+    width: 100%;
+}
+
+#beds {
+    position: relative;
+    top: -92px;
+}
+
+#submitBtn {
+    position: relative;
+    left: 20px;
+    top: -92px;
+}

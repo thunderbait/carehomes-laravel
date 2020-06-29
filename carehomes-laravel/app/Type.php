@@ -8,5 +8,8 @@ class Type extends Model
 {
     protected $fillable = 'name';
 
-
+    public function carehomes()
+    {
+        return $this->belongsToMany(Carehome::class);
+    }
 }
