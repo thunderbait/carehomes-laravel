@@ -15,9 +15,9 @@ class CreateCarehomeSpecialismsTable extends Migration
     {
         Schema::create('carehome_specialisms', function (Blueprint $table) {
             $table->id();
-            $table->integer('carehome_id');
-            $table->integer('specialism_id');
-            $table->timestamps();
+            $table->integer('carehome_id')->nullable(false)->unsigned();
+            $table->integer('specialism_id')->nullable(false)->unsigned();
+            
         });
     }
 

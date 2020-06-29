@@ -15,8 +15,8 @@ class CreateSpecialismsTable extends Migration
     {
         Schema::create('specialisms', function (Blueprint $table) {
             $table->id();
-            $table->longtext('name');
-            $table->timestamps();
+            $table->longtext('name')->nullable(false);
+            
         });
     }
 

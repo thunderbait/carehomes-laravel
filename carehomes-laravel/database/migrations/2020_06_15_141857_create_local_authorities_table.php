@@ -15,7 +15,7 @@ class CreateLocalAuthoritiesTable extends Migration
     {
         Schema::create('local_authorities', function (Blueprint $table) {
             $table->id();
-            $table->longtext('name');
+            $table->longtext('name')->nullable(false);
             $table->timestamps();
         });
     }
