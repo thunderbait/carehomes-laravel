@@ -25,7 +25,7 @@
                     @endforeach
                 </select>
             </div>
-            <!-- Input for Types 1 (Dropdown) -->
+            <!-- Input for Type 1 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="type1">Type 1</label>
                 <input id="search3" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select3')">
@@ -35,7 +35,7 @@
                     @endforeach
                 </select>
             </div>
-            <!-- Input for Types 2 (Dropdown) -->
+            <!-- Input for Type 2 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="type2">Type 2</label>
                 <input id="search4" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select4')">
@@ -45,13 +45,43 @@
                     @endforeach
                 </select>
             </div>
-            <!-- Input for Types 3 (Dropdown) -->
+            <!-- Input for Type 3 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="type3">Type 3</label>
                 <input id="search5" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select5')">
                 <select  id="select5" size="3" type="text" class="form-control" name="type3">
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <!-- Input for Specialism 1 (Dropdown) -->
+            <div class="form-group col-md-3">
+                <label for="specialism1">Specialism 1</label>
+                <input id="search6" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select6')">
+                <select  id="select6" size="3" type="text" class="form-control" name="specialism1">
+                    @foreach ($specialisms as $specialism)
+                        <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <!-- Input for Specialism 2 (Dropdown) -->
+            <div class="form-group col-md-3">
+                <label for="specialism2">Specialism 2</label>
+                <input id="search7" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select7')">
+                <select  id="select7" size="3" type="text" class="form-control" name="specialism2">
+                    @foreach ($specialisms as $specialism)
+                        <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <!-- Input for Specialism 3 (Dropdown) -->
+            <div class="form-group col-md-3">
+                <label for="specialism3">Specialism 3</label>
+                <input id="search8" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select8')">
+                <select  id="select8" size="3" type="text" class="form-control" name="specialism3">
+                    @foreach ($specialisms as $specialism)
+                        <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
                     @endforeach
                 </select>
             </div>

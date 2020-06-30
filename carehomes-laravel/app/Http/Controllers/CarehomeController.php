@@ -28,9 +28,10 @@ class CarehomeController extends Controller
 
         $local_authorities = LocalAuthority::orderBy('name', 'asc')->get();
         $groups = Group::orderBy('name', 'asc')->get();
-        $types = Type::all();
+        $types = Type::orderBy('name', 'asc')->get();
+        $specialisms = Specialism::orderBy('name', 'asc')->get();
 
-        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types'));
+        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms'));
 	}
 
     public function show($id)
@@ -42,21 +43,7 @@ class CarehomeController extends Controller
 
     public function filter(Request $request)
     {
-
         $local_authorities = DB::table('local_authorities')->get();
-
-        // discover the unique local_authority from the locations
-        // $authorities = Location::distinct('local_authority')
-        //     ->orderBy('local_authority')
-        //     ->get(['local_authority'])
-        //     ->map(function ($a) {
-        //         return $a;
-        //     });
-
-        // $authority = $request->get('location_authority');
-        // $carehomesQuery = Carehome::query();
-
-        // return $authorities;
 
         return view('carehomes.filter', ['local_authorities' => $local_authorities]);
     }
