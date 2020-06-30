@@ -1,9 +1,8 @@
 <a id="filterBtn" href="javascript:void(0)" onclick="openFilter()">Advanced Search</a>
 <div class="row">
-    <div id="filter" class="container col-12">
+    <div id="advancedSearch" class="container col-12">
         <h3><a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>Advanced Search</h3>
         <br>
-
         <form action="{{route('search')}}">
             <!-- Input for Location Authority (Dropdown) -->
             <div class="form-group col-md-3">
@@ -91,7 +90,9 @@
                 <input name="number_beds" id="number_beds" class="form-control"
                        placeholder="Enter min. number of beds...">
             </div>
-            <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+            <div class="row">
+                <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </form>
     </div>
 </div>

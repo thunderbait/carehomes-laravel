@@ -10,7 +10,7 @@ form {
     padding-bottom: 20px;
 }
 
-#filter {
+#advancedSearch {
     display: none;
 }
 
@@ -25,6 +25,4 @@ input {
 
 #submitBtn {
     position: relative;
-    left: 20px;
-    top: -92px;
 }

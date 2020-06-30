@@ -102,7 +102,7 @@
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 
-        filter = document.getElementById("filter");
+        filter = document.getElementById("advancedSearch");
         function openFilter()
         {
             document.getElementById("filterBtn").style.display = "none";
