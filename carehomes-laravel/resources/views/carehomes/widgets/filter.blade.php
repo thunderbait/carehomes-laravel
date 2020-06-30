@@ -3,12 +3,13 @@
     <div id="advancedSearch" class="container col-12">
         <h3><a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>Advanced Search</h3>
         <br>
-        <form action="{{route('search')}}">
+        <form action="{{route('carehomes.index')}}">
             <!-- Input for Location Authority (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="local_authority">Local Authority</label>
-                <input id="search1" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select1')">
-                <select  id="select1" size="3" type="text" class="form-control" name="group">
+                <input id="search1" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select1')">
+                <select  id="select1" size="3" type="text" class="form-control" name="local_authority">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($local_authorities as $local_authority)
                         <option value="{{ $local_authority->id }}">{{ $local_authority->name }}</option>
                     @endforeach
@@ -17,18 +18,26 @@
             <!-- Input for Group (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="group">Group</label>
-                <input id="search2" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select2')">
+                <input id="search2" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select2')">
                 <select  id="select2" size="3" type="text" class="form-control" name="group">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($groups as $group)
                         <option value="{{ $group->id }}">{{ $group->name }}</option>
                     @endforeach
                 </select>
             </div>
+            <!-- Input for Minimum Number of Beds -->
+            <div id="beds" class="form-group col-md-3">
+                <label for="number_beds">Min. Number of Beds</label>
+                <input type="number" name="number_beds" id="number_beds" class="form-control"
+                       placeholder="Enter min. number of beds..." default="0">
+            </div>
             <!-- Input for Type 1 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="type1">Type 1</label>
-                <input id="search3" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select3')">
+                <input id="search3" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select3')">
                 <select  id="select3" size="3" type="text" class="form-control" name="type1">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -37,8 +46,9 @@
             <!-- Input for Type 2 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="type2">Type 2</label>
-                <input id="search4" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select4')">
+                <input id="search4" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select4')">
                 <select  id="select4" size="3" type="text" class="form-control" name="type2">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -47,8 +57,9 @@
             <!-- Input for Type 3 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="type3">Type 3</label>
-                <input id="search5" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select5')">
+                <input id="search5" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select5')">
                 <select  id="select5" size="3" type="text" class="form-control" name="type3">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -57,8 +68,9 @@
             <!-- Input for Specialism 1 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="specialism1">Specialism 1</label>
-                <input id="search6" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select6')">
+                <input id="search6" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select6')">
                 <select  id="select6" size="3" type="text" class="form-control" name="specialism1">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($specialisms as $specialism)
                         <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
                     @endforeach
@@ -67,8 +79,9 @@
             <!-- Input for Specialism 2 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="specialism2">Specialism 2</label>
-                <input id="search7" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select7')">
+                <input id="search7" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select7')">
                 <select  id="select7" size="3" type="text" class="form-control" name="specialism2">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($specialisms as $specialism)
                         <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
                     @endforeach
@@ -77,18 +90,13 @@
             <!-- Input for Specialism 3 (Dropdown) -->
             <div class="form-group col-md-3">
                 <label for="specialism3">Specialism 3</label>
-                <input id="search8" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select8')">
+                <input id="search8" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select8')">
                 <select  id="select8" size="3" type="text" class="form-control" name="specialism3">
+                    <option value="n/a" selected>N/A</option>
                     @foreach ($specialisms as $specialism)
                         <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
                     @endforeach
                 </select>
-            </div>
-            <!-- Input for Minimum Number of Beds -->
-            <div id="beds" class="form-group col-md-3">
-                <label for="number_beds">Min. Number of Beds</label>
-                <input name="number_beds" id="number_beds" class="form-control"
-                       placeholder="Enter min. number of beds...">
             </div>
             <div class="row">
                 <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>

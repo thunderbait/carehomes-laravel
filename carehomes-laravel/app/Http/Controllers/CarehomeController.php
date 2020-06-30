@@ -7,11 +7,7 @@ use App\Group;
 use App\LocalAuthority;
 use App\Type;
 use App\Specialism;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Location;
-use App\Contact;
 
 class CarehomeController extends Controller
 {
@@ -23,6 +19,8 @@ class CarehomeController extends Controller
         {
             $query->where('name', 'LIKE', "%{$searchTerm}%");
         }
+
+        $this->filter($request, $query);
 
         $carehomes = $query->paginate(25);
 
@@ -41,45 +39,30 @@ class CarehomeController extends Controller
         return view('carehomes.show', compact('carehome'));
     }
 
-    public function filter(Request $request)
+    private function filter(Request $request, $query)
     {
-        $local_authorities = DB::table('local_authorities')->get();
+        $localAuthority = $request->query('local_authority');
+        $group = $request->query('group');
+        $minBeds = $request->query('number_beds');
+        $type1 = $request->query('type1');
+        $type2 = $request->query('type2');
+        $type3 = $request->query('type3');
+        $specialism1 = $request->query('specialism1');
+        $specialism2 = $request->query('specialism2');
+        $specialism3 = $request->query('specialism3');
 
-        return view('carehomes.filter', ['local_authorities' => $local_authorities]);
+        if ($localAuthority && $group && $minBeds && $type1 && $type2 && $type3 && $specialism1 && $specialism2 && $specialism3)
+        {
+            return $query->leftJoin('carehome_types', 'carehomes.id', '=', 'carehome_types.carehome_id')
+                ->leftJoin('types', 'types.id', '=', 'carehome_types.type_id')
+                ->leftJoin('carehome_specialisms', 'carehomes.id', '=', 'carehome_types.carehome_id')
+                ->leftJoin('specialisms', 'specialisms.id', '=', 'carehome_specialisms.specialism_id')
+                ->leftJoin('locations', 'locations.id', '=', 'carehomes.location_id')
+                ->where('number_beds', '>=', $minBeds)
+                ->where('group_id', $group)
+                ->where('local_authority_id', $localAuthority)
+                ->where('type_id', $type1 || $type2 || $type3)
+                ->where('specialism_id', $specialism1 || $specialism2 || $specialism3);
+        }
     }
-
-    public function search(Request $request)
-    {
-    //     $local_auth = $request->get('local_authority');
-    //     $number_beds = $request->get('number_beds');
-
-    //     /// From the local authorities table I want to get the id for the entry
-    //     /// that has a name = $local_auth
-    //     /// Expected to return only 1 value (interger)
-    //     $local_auth_id = DB::table('local_authorities')
-    //         ->where('name', 'LIKE', "%{$local_auth}")
-    //         ->get(['id']);
-
-
-    //     /// From the locations table, find all the locations with local_authority_id = $local_auth_id.
-    //     /// Since the relationship between local_authorities and locations is One-to-Many
-    //     /// i want to input the results into an array called $local_auth_locations
-    //     $local_auth_locations =  DB::table('locations')
-    //         ->orderBy('name')
-    //         ->where('local_auhority_id', 'LIKE', "%{$local_auth_id}")
-    //         ->map(function ($a) {
-    //             return $a;
-    //         });
-
-    //     /// Query the carehomes table, to find all carehomes with a location_id that is in $local_auth_locations
-    //     /// I was thinking i could use the if(in_array) method
-    //     /// Then, filter out all the carehomes with less than ($number_beds) beds
-    //     /// SELECT * FROM `carehomes-db`.carehomes where number_beds>$number_beds AND location_id is in $local_auth_locations;
-    //     $carehomes_query = DB::table('carehomes')
-    //         ->where('number_beds', '>', "%{$number_beds}")
-    //         ->
-
-    //     /// At the end, I want to display the results in a view with the same layout as /carehomes/index.blade.php
-    }
-
 }
