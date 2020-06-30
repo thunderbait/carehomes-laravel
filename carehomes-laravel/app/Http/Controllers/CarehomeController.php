@@ -22,8 +22,14 @@ class CarehomeController extends Controller
 
         $carehomes = $query->paginate(25);
         return view('carehomes.index', compact('carehomes'));
-	}
+    }
     
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $carehome = Carehome::findOrFail($id);
@@ -84,6 +90,51 @@ class CarehomeController extends Controller
     //         ->
 
     //     /// At the end, I want to display the results in a view with the same layout as /carehomes/index.blade.php
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Carehome $carehome)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Carehome $carehome)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Carehome $carehome)
+    {
+        //
     }
 
 }
