@@ -28,8 +28,9 @@ class CarehomeController extends Controller
 
         $local_authorities = LocalAuthority::orderBy('name', 'asc')->get();
         $groups = Group::orderBy('name', 'asc')->get();
+        $types = Type::all();
 
-        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups'));
+        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types'));
 	}
 
     public function show($id)

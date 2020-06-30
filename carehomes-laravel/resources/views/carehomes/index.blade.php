@@ -29,43 +29,7 @@
         </div>
 
         <!-- ADVANCED SEARCH FILTERS -->
-        <a id="filterBtn" href="javascript:void(0)" onclick="openFilter()">Advanced Search</a>
-        <div class="row">
-            <div id="filter" class="container col-12">
-                <h3><a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>Advanced Search</h3>
-                <br>
-
-                <form action="{{route('search')}}">
-                    <!-- Input for Location Authority (Dropdown) -->
-                    <div class="form-group col-md-3">
-                        <label for="local_authority">Local Authority</label>
-                        <input id="search1" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select1')">
-                        <select  id="select1" size="3" type="text" class="form-control" name="group">
-                            @foreach ($local_authorities as $local_authority)
-                                <option value="{{ $local_authority->id }}">{{ $local_authority->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <!-- Input for Group (Dropdown) -->
-                    <div class="form-group col-md-3">
-                        <label for="group">Group</label>
-                        <input id="search2" type="text" class="form-control" name="search" placeholder="Search" onkeyup="filterList(this.value, 'select2')">
-                        <select  id="select2" size="3" type="text" class="form-control" name="group">
-                            @foreach ($groups as $group)
-                                <option value="{{ $group->id }}">{{ $group->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <!-- Input for Minimum Number of Beds -->
-                    <div id="beds" class="form-group col-md-3">
-                        <label for="number_beds">Min. Number of Beds</label>
-                        <input name="number_beds" id="number_beds" class="form-control"
-                               placeholder="Enter min. number of beds...">
-                    </div>
-                    <button id="submitBtn" type="submit" class="btn btn-primary">Submit</button>
-                </form>
-            </div>
-        </div>
+        @include('carehomes.widgets.filter')
         <!-- END ADVANCED SEARCH FILTERS -->
 
         <div class="row">
