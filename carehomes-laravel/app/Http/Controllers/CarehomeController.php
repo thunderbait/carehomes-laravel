@@ -30,11 +30,17 @@ class CarehomeController extends Controller
 
         return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms'));
     }
-
+    }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $carehome = Carehome::findOrFail($id);
-        $return = (($carehome->number_beds * 365) * (92.5 / 100)) * (65 / 100);
         return view('carehomes.show', compact('carehome'));
     }
 
@@ -110,4 +116,67 @@ class CarehomeController extends Controller
                 }); */
         //}
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $carehome = Carehome::findOrFail($id);
+        return view('carehomes.edit', compact('carehome'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Carehome $carehome)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'number_beds' => 'required',
+            'location_id' => 'required',
+            'group_id' => 'required',
+            'notes' => 'required',
+        ]);
+
+        $carehome->name = $request->name;
+        $carehome->number_beds = $request->number_beds;
+        $carehome->location_id = $request->location_id;
+        $carehome->group_id = $request->group_id;
+        $carehome->notes = $request->notes;
+
+        $carehome->update();
+
+        return redirect()->route('carehomes.index')->with('success','Carehome updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Carehome  $carehome
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Carehome $carehome)
+    {
+        //
+    }
+
 }

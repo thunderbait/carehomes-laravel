@@ -53,29 +53,24 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Group</th>
+
                     <th>Location ID</th>
                     <th>No.Beds</th>
                     <th>Notes</th>
                 </tr>
                 </thead>
                 <tbody>
-                     @foreach($carehomes as $carehome)
-                	<tr>
-                        <td>{{$carehome->id}}</td>
-                        <td>
-                            <a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a>
-                        </td>
-                        <td>
-                            <a href="{{route('groups.show', $carehome->group_id)}}">
-                                {{ !empty($carehome->group) ? $carehome->group->name : ""}}
-                            </a>
-                        </td>
-                        <td>{{$carehome->location_id}}</td>
-
-                        <td>{{$carehome->number_beds}}</td>
-                        <td>{{$carehome->notes}}</td>
-                    </tr>
-                    @endforeach
+                @foreach($carehomes as $carehome)
+                <tr>
+                    <td>{{$carehome->id}}</td>
+                    <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a></td>
+                    <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</td>
+                    <td>{{$carehome->location_id}}</td>
+                    <td>{{$carehome->number_beds}}</td>
+                    <td>{{$carehome->notes}}</td>
+                    <td><a href="{{route('carehomes.edit', $carehome->id)}}" class="btn btn-warning">Edit</a></td>
+                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
