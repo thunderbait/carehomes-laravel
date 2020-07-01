@@ -52,9 +52,10 @@ class GroupController extends Controller
      * @param  \App\Group  $group
      * @return \Illuminate\Http\Response
      */
-    public function edit(Group $group)
+    public function edit($id)
     {
-        //
+        $group = Group::findOrFail($id);
+        return view('groups.edit', compact('group'));
     }
 
     /**
@@ -66,8 +67,18 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $group->name = $request->name;
+        
+
+        $group->update();
+
+        return redirect()->route('groups.show',compact('group'))->with('success','Group updated successfully');
     }
+    
 
     /**
      * Remove the specified resource from storage.
