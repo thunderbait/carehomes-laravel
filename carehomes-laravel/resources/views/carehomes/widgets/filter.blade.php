@@ -9,7 +9,6 @@
                 <label for="local_authority">Local Authority</label>
                 <input id="search1" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select1')">
                 <select  id="select1" size="3" type="text" class="form-control" name="local_authority">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($local_authorities as $local_authority)
                         <option value="{{ $local_authority->id }}">{{ $local_authority->name }}</option>
                     @endforeach
@@ -20,7 +19,6 @@
                 <label for="group">Group</label>
                 <input id="search2" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select2')">
                 <select  id="select2" size="3" type="text" class="form-control" name="group">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($groups as $group)
                         <option value="{{ $group->id }}">{{ $group->name }}</option>
                     @endforeach
@@ -37,7 +35,6 @@
                 <label for="type1">Type 1</label>
                 <input id="search3" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select3')">
                 <select  id="select3" size="3" type="text" class="form-control" name="type1">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -48,7 +45,6 @@
                 <label for="type2">Type 2</label>
                 <input id="search4" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select4')">
                 <select  id="select4" size="3" type="text" class="form-control" name="type2">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -59,7 +55,6 @@
                 <label for="type3">Type 3</label>
                 <input id="search5" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select5')">
                 <select  id="select5" size="3" type="text" class="form-control" name="type3">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -70,7 +65,6 @@
                 <label for="specialism1">Specialism 1</label>
                 <input id="search6" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select6')">
                 <select  id="select6" size="3" type="text" class="form-control" name="specialism1">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($specialisms as $specialism)
                         <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
                     @endforeach
@@ -81,7 +75,6 @@
                 <label for="specialism2">Specialism 2</label>
                 <input id="search7" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select7')">
                 <select  id="select7" size="3" type="text" class="form-control" name="specialism2">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($specialisms as $specialism)
                         <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
                     @endforeach
@@ -92,7 +85,6 @@
                 <label for="specialism3">Specialism 3</label>
                 <input id="search8" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select8')">
                 <select  id="select8" size="3" type="text" class="form-control" name="specialism3">
-                    <option value="n/a" selected>N/A</option>
                     @foreach ($specialisms as $specialism)
                         <option value="{{ $specialism->id }}">{{ $specialism->name }}</option>
                     @endforeach

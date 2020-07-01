@@ -13,7 +13,7 @@ class CarehomeController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carehome::with('group')->orderBy('name', 'asc');
+        $query = Carehome::orderBy('name', 'asc');
 
         if ($searchTerm = $request->query('q')) {
             $query->where('name', 'LIKE', "%{$searchTerm}%");
@@ -50,8 +50,50 @@ class CarehomeController extends Controller
         $specialism2 = $request->query('specialism2');
         $specialism3 = $request->query('specialism3');
 
-        if ($localAuthority && $group && $minBeds && $type1 && $type2 && $type3 && $specialism1 && $specialism2 && $specialism3) {
-            return $query->where('number_beds', '>=', $minBeds)
+        //if ($localAuthority && $group && $minBeds && $type1 && $type2 && $type3 && $specialism1 && $specialism2 && $specialism3) {
+            $query->when($minBeds, function ($query, $minBeds) {
+                return $query->where('number_beds', '>=', $minBeds);
+            })
+                ->when($group, function ($query, $group) {
+                    return $query->where('group_id', $group);
+                })
+                ->when($localAuthority, function ($query, $localAuthority) {
+                    return $query->whereHas('location', function ($query) use ($localAuthority) {
+                        $query->where('local_authority_id', $localAuthority);
+                    });
+                })
+                ->when($type1, function ($query, $type1) {
+                    return $query->whereHas('types', function ($query) use ($type1) {
+                        $query->where('type_id', $type1);
+                    });
+                })
+                ->when($type2, function ($query, $type2) {
+                    return $query->whereHas('types', function ($query) use ($type2) {
+                        $query->where('type_id', $type2);
+                    });
+                })
+                ->when($type3, function ($query, $type3) {
+                    return $query->whereHas('types', function ($query) use ($type3) {
+                        $query->where('type_id', $type3);
+                    });
+                })
+                ->when($specialism1, function ($query, $specialism1) {
+                    return $query->whereHas('specialisms', function ($query) use ($specialism1) {
+                        $query->where('specialism_id', $specialism1);
+                    });
+                })
+                ->when($specialism2, function ($query, $specialism2) {
+                    return $query->whereHas('specialisms', function ($query) use ($specialism2) {
+                        $query->where('specialism_id', $specialism2);
+                    });
+                })
+                ->when($specialism3, function ($query, $specialism3) {
+                    return $query->whereHas('specialisms', function ($query) use ($specialism3) {
+                        $query->where('specialism_id', $specialism3);
+                    });
+                });
+
+            /* return $query->where('number_beds', '>=', $minBeds)
                 ->where('group_id', $group)
                 ->whereHas('location', function ($query) use ($localAuthority) {
                     $query->where('local_authority_id', $localAuthority);
@@ -65,7 +107,7 @@ class CarehomeController extends Controller
                     $query->where('specialism_id', $specialism1)
                         ->orWhere('specialism_id', $specialism2)
                         ->orWhere('specialism_id', $specialism3);
-                });
-        }
+                }); */
+        //}
     }
 }
