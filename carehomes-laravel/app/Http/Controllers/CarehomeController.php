@@ -30,7 +30,6 @@ class CarehomeController extends Controller
 
         return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms'));
     }
-    }
     
     /**
      * Display the specified resource.
