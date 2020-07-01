@@ -65,7 +65,11 @@
                         <td>
                             <a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a>
                         </td>
-                        <td><a href="{{route('groups.show', $carehome->group_id)}}">{{$carehome->group->name}}</a></td>
+                        <td>
+                            <a href="{{route('groups.show', $carehome->group_id)}}">
+                                {{ !empty($carehome->group) ? $carehome->group->name : ""}}
+                            </a>
+                        </td>
                         <td>{{$carehome->location_id}}</td>
 
                         <td>{{$carehome->number_beds}}</td>
