@@ -25,10 +25,18 @@
                 </select>
             </div>
             <!-- Input for Minimum Number of Beds -->
-            <div id="beds" class="form-group col-md-3">
-                <label for="number_beds">Min. Number of Beds</label>
-                <input type="number" name="number_beds" id="number_beds" class="form-control"
-                       placeholder="Enter min. number of beds..." default="0">
+            <div id="mins" class="form-group col-md-3">
+                <div class="row">
+                    <label for="number_beds">Min. Number of Beds</label>
+                    <input type="number" name="number_beds" id="number_beds" class="form-control"
+                           placeholder="Enter min. number of beds..." default="0">
+                </div>
+                <!-- Input for Minimum Number of Homes Per Group -->
+                <div class="row">
+                    <label for="minHomes">Min. Homes Per Group</label>
+                    <input type="number" name="minHomes" id="minHomes" class="form-control"
+                           placeholder="Enter min. homes per group..." default="0">
+                </div>
             </div>
             <!-- Input for Type 1 (Dropdown) -->
             <div class="form-group col-md-3">
