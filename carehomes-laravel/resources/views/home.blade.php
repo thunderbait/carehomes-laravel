@@ -34,19 +34,7 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 <a href="{{route('carehomes.index')}}" class="card-link">Browse DB</a>
             </div>
-            </div>        
-        </div>
-
-        <div class="col-md-3">
-            <div class="card">
-            <div class="card-header">Tool 2</div>
-            <div class="card-body">
-                <h5 class="card-title">Tool 2</h5>
-                <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
-                <p class="card-text">Wow such text much php</p>
-                <a href="carehomes/filter" class="card-link">Filter</a>
             </div>
-            </div>        
         </div>
 
         <div class="col-md-3">
@@ -58,7 +46,7 @@
                 <p class="card-text">These are the ROIs you are looking for</p>
                 <a href="#" class="card-link">Disabled</a>
             </div>
-            </div>        
+            </div>
         </div>
     </div>
 

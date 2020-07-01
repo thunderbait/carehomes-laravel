@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    protected $fillable = [
-    	'name','local_authority'
-    	];
+    protected $fillable = ['name'];
 
     public function carehome()
     {
