@@ -109,9 +109,10 @@ class CarehomeController extends Controller
      * @param  \App\Carehome  $carehome
      * @return \Illuminate\Http\Response
      */
-    public function edit(Carehome $carehome)
+    public function edit($id)
     {
-        //
+        $carehome = Carehome::findOrFail($id);
+        return view('carehomes.edit', compact('carehome'));
     }
 
     /**
@@ -123,7 +124,23 @@ class CarehomeController extends Controller
      */
     public function update(Request $request, Carehome $carehome)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'number_beds' => 'required',
+            'location_id' => 'required',
+            'group_id' => 'required',
+            'notes' => 'required',
+        ]);
+
+        $carehome->name = $request->name;
+        $carehome->number_beds = $request->number_beds;
+        $carehome->location_id = $request->location_id;
+        $carehome->group_id = $request->group_id;
+        $carehome->notes = $request->notes;
+
+        $carehome->update();
+
+        return redirect()->route('carehomes.index')->with('success','Carehome updated successfully');
     }
 
     /**
