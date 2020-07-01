@@ -76,7 +76,7 @@
             </table>
         </div>
 
-        <button onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
+        <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
 
         <div class="row justify-content-center">
             {{ $carehomes->links() }}

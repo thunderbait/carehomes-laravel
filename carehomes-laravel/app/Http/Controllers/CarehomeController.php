@@ -13,7 +13,7 @@ class CarehomeController extends Controller
 {
 	public function index(Request $request)
 	{
-        $query = Carehome::orderBy('name', 'asc');
+        $query = Carehome::with('location')->orderBy('name', 'asc');
 
         if ($searchTerm = $request->query('q'))
         {
@@ -53,16 +53,14 @@ class CarehomeController extends Controller
 
         if ($localAuthority && $group && $minBeds && $type1 && $type2 && $type3 && $specialism1 && $specialism2 && $specialism3)
         {
-            return $query->leftJoin('carehome_types', 'carehomes.id', '=', 'carehome_types.carehome_id')
-                ->leftJoin('types', 'types.id', '=', 'carehome_types.type_id')
-                ->leftJoin('carehome_specialisms', 'carehomes.id', '=', 'carehome_types.carehome_id')
-                ->leftJoin('specialisms', 'specialisms.id', '=', 'carehome_specialisms.specialism_id')
-                ->leftJoin('locations', 'locations.id', '=', 'carehomes.location_id')
-                ->where('number_beds', '>=', $minBeds)
+            return $query->where('number_beds', '>=', $minBeds)
                 ->where('group_id', $group)
-                ->where('local_authority_id', $localAuthority)
-                ->where('type_id', $type1 || $type2 || $type3)
-                ->where('specialism_id', $specialism1 || $specialism2 || $specialism3);
+                ->whereHas('location', function($query) use ($localAuthority) {
+                    $query->where('local_authority_id', $localAuthority);
+                });
+
+                //->where('carehome_types.type_id', $type1 || $type2 || $type3)
+                //->where('carehome_specialisms.specialism_id', $specialism1 || $specialism2 || $specialism3);
         }
     }
 }
