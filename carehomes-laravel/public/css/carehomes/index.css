@@ -18,11 +18,15 @@ input {
     width: 100%;
 }
 
-#beds {
+#mins {
     position: relative;
-    top: -92px;
+    top: -52px;
 }
 
 #submitBtn {
     position: relative;
+}
+
+#number_beds {
+    margin-bottom: 10px;
 }

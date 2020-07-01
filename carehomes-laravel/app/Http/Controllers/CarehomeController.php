@@ -30,8 +30,7 @@ class CarehomeController extends Controller
 
         return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms'));
     }
-    }
-    
+
     /**
      * Display the specified resource.
      *
@@ -49,6 +48,7 @@ class CarehomeController extends Controller
         $localAuthority = $request->query('local_authority');
         $group = $request->query('group');
         $minBeds = $request->query('number_beds');
+        $minHomes = $request->query('minHomes');
         $type1 = $request->query('type1');
         $type2 = $request->query('type2');
         $type3 = $request->query('type3');
@@ -56,65 +56,52 @@ class CarehomeController extends Controller
         $specialism2 = $request->query('specialism2');
         $specialism3 = $request->query('specialism3');
 
-        //if ($localAuthority && $group && $minBeds && $type1 && $type2 && $type3 && $specialism1 && $specialism2 && $specialism3) {
-            $query->when($minBeds, function ($query, $minBeds) {
-                return $query->where('number_beds', '>=', $minBeds);
+        $query->when($minBeds, function ($query, $minBeds) {
+            return $query->where('number_beds', '>=', $minBeds);
+        })
+            ->when($group, function ($query, $group) {
+                return $query->where('group_id', $group);
             })
-                ->when($group, function ($query, $group) {
-                    return $query->where('group_id', $group);
-                })
-                ->when($localAuthority, function ($query, $localAuthority) {
-                    return $query->whereHas('location', function ($query) use ($localAuthority) {
-                        $query->where('local_authority_id', $localAuthority);
-                    });
-                })
-                ->when($type1, function ($query, $type1) {
-                    return $query->whereHas('types', function ($query) use ($type1) {
-                        $query->where('type_id', $type1);
-                    });
-                })
-                ->when($type2, function ($query, $type2) {
-                    return $query->whereHas('types', function ($query) use ($type2) {
-                        $query->where('type_id', $type2);
-                    });
-                })
-                ->when($type3, function ($query, $type3) {
-                    return $query->whereHas('types', function ($query) use ($type3) {
-                        $query->where('type_id', $type3);
-                    });
-                })
-                ->when($specialism1, function ($query, $specialism1) {
-                    return $query->whereHas('specialisms', function ($query) use ($specialism1) {
-                        $query->where('specialism_id', $specialism1);
-                    });
-                })
-                ->when($specialism2, function ($query, $specialism2) {
-                    return $query->whereHas('specialisms', function ($query) use ($specialism2) {
-                        $query->where('specialism_id', $specialism2);
-                    });
-                })
-                ->when($specialism3, function ($query, $specialism3) {
-                    return $query->whereHas('specialisms', function ($query) use ($specialism3) {
-                        $query->where('specialism_id', $specialism3);
-                    });
+            ->when($group, function ($query, $group) {
+                return $query->whereHas('group', function ($query) use ($group) {
+                    $query->where('', $group);
                 });
-
-            /* return $query->where('number_beds', '>=', $minBeds)
-                ->where('group_id', $group)
-                ->whereHas('location', function ($query) use ($localAuthority) {
+            })
+            ->when($localAuthority, function ($query, $localAuthority) {
+                return $query->whereHas('location', function ($query) use ($localAuthority) {
                     $query->where('local_authority_id', $localAuthority);
-                })
-                ->whereHas('types', function ($query) use ($type1, $type2, $type3) {
-                    $query->where('type_id', $type1)
-                        ->orWhere('type_id', $type2)
-                        ->orWhere('type_id', $type3);
-                })
-                ->orWhereHas('specialisms', function ($query) use ($specialism1, $specialism2, $specialism3) {
-                    $query->where('specialism_id', $specialism1)
-                        ->orWhere('specialism_id', $specialism2)
-                        ->orWhere('specialism_id', $specialism3);
-                }); */
-        //}
+                });
+            })
+            ->when($type1, function ($query, $type1) {
+                return $query->whereHas('types', function ($query) use ($type1) {
+                    $query->where('type_id', $type1);
+                });
+            })
+            ->when($type2, function ($query, $type2) {
+                return $query->whereHas('types', function ($query) use ($type2) {
+                    $query->where('type_id', $type2);
+                });
+            })
+            ->when($type3, function ($query, $type3) {
+                return $query->whereHas('types', function ($query) use ($type3) {
+                    $query->where('type_id', $type3);
+                });
+            })
+            ->when($specialism1, function ($query, $specialism1) {
+                return $query->whereHas('specialisms', function ($query) use ($specialism1) {
+                    $query->where('specialism_id', $specialism1);
+                });
+            })
+            ->when($specialism2, function ($query, $specialism2) {
+                return $query->whereHas('specialisms', function ($query) use ($specialism2) {
+                    $query->where('specialism_id', $specialism2);
+                });
+            })
+            ->when($specialism3, function ($query, $specialism3) {
+                return $query->whereHas('specialisms', function ($query) use ($specialism3) {
+                    $query->where('specialism_id', $specialism3);
+                });
+            });
     }
 
     /**
