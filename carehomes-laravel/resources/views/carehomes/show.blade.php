@@ -11,34 +11,12 @@
     </nav>
 </div>
 
-<!-- Carehome Jumbotron -->
-<div class="container">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">{{$carehome->name}}</h1>
-            <p class="lead">{{$carehome->location->name}}</p>
-        </div>
-    </div>
-</div>
+@include('carehomes.widgets.jumbotron')
 
-<!-- Carehome Details -->
 <div class="container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Group</th>
-                <th>No.Beds</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{$carehome->id}}</td>
-                <td><a href="{{route('groups.show', $carehome->group_id)}}">{{$carehome->group->name}}</td>
-                <td>{{$carehome->number_beds}}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h2>Carehome Notes</h2>
+    <p>{{ $carehome->notes }}</p>
+    </br>
 </div>
 
 <div class="container">
@@ -50,5 +28,6 @@
         @endforeach
     </div>
 </div>
+
 
 @endsection
