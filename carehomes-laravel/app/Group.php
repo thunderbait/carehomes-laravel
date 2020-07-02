@@ -18,4 +18,12 @@ class Group extends Model
     {
         return $this->carehomes()->count();
     }
+
+    public function minNumOfHomes($minHomes)
+    {
+        if ($this->numOfHomes() >= $minHomes)
+        {
+            return $this;
+        }
+    }
 }

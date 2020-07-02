@@ -41,7 +41,7 @@
         </div>
 
         <div class="row justify-content-center">
-            {{ $carehomes->links() }}
+            {{ $carehomes->appends($input)->links() }}
         </div>
 
         <div class="row">
@@ -78,7 +78,7 @@
         <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
 
         <div class="row justify-content-center">
-            {{ $carehomes->links() }}
+            {{ $carehomes->appends($input)->links() }}
         </div>
     </div>
 

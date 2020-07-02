@@ -19,6 +19,7 @@ class CarehomeController extends Controller
             $query->where('name', 'LIKE', "%{$searchTerm}%");
         }
 
+        $input = $request->all();
         $this->filter($request, $query);
 
         $carehomes = $query->paginate(25);
@@ -28,7 +29,7 @@ class CarehomeController extends Controller
         $types = Type::orderBy('name', 'asc')->get();
         $specialisms = Specialism::orderBy('name', 'asc')->get();
 
-        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms'));
+        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms', 'input'));
     }
 
     /**
@@ -48,7 +49,6 @@ class CarehomeController extends Controller
         $localAuthority = $request->query('local_authority');
         $group = $request->query('group');
         $minBeds = $request->query('number_beds');
-        $minHomes = $request->query('minHomes');
         $type1 = $request->query('type1');
         $type2 = $request->query('type2');
         $type3 = $request->query('type3');
@@ -61,17 +61,6 @@ class CarehomeController extends Controller
         })
             ->when($group, function ($query, $group) {
                 return $query->where('group_id', $group);
-            })
-            ->when($minHomes, function ($query, $minHomes) {
-                $groups = Group::all();
-                foreach ($groups as $group)
-                {
-                    if ($group->numOfHomes() >= $minHomes)
-                    {
-                        $results = $query->orWhere('group_id', $group->id);
-                    }
-                }
-                return $results;
             })
             ->when($localAuthority, function ($query, $localAuthority) {
                 return $query->whereHas('location', function ($query) use ($localAuthority) {
@@ -108,17 +97,6 @@ class CarehomeController extends Controller
                     $query->where('specialism_id', $specialism3);
                 });
             });
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
