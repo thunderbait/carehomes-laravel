@@ -6,12 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    //
+    protected $fillable = ['name'];
 
-     public function carehome()
+    public function carehome()
     {
-        return $this->belongsTo('Carehome::class');
+        return $this->hasMany('App\Carehome');
     }
 
-    protected $fillable = ['name','location_authority'];
+    public function localAuthority()
+    {
+        return $this->belongsTo('App\LocalAuthority');
+    }
+
 }
