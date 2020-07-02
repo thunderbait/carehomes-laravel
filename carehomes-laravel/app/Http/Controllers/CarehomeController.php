@@ -30,7 +30,7 @@ class CarehomeController extends Controller
 
         return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms'));
     }
-  
+
     /**
      * Display the specified resource.
      *
@@ -62,10 +62,16 @@ class CarehomeController extends Controller
             ->when($group, function ($query, $group) {
                 return $query->where('group_id', $group);
             })
-            ->when($group, function ($query, $group) {
-                return $query->whereHas('group', function ($query) use ($group) {
-                    $query->where('', $group);
-                });
+            ->when($minHomes, function ($query, $minHomes) {
+                $groups = Group::all();
+                foreach ($groups as $group)
+                {
+                    if ($group->numOfHomes() >= $minHomes)
+                    {
+                        $results = $query->orWhere('group_id', $group->id);
+                    }
+                }
+                return $results;
             })
             ->when($localAuthority, function ($query, $localAuthority) {
                 return $query->whereHas('location', function ($query) use ($localAuthority) {

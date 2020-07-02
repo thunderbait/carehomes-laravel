@@ -14,4 +14,8 @@ class Group extends Model
         return $this->hasMany('App\Carehome');
     }
 
+    public function numOfHomes()
+    {
+        return $this->carehomes()->count();
+    }
 }
