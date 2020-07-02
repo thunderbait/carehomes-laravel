@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Carehome extends Model
 {
+    use Sortable;
+
     protected $fillable = ['name','number_beds','location_id','group_id','notes'];
+
+    public $sortable = ['id', 'name', 'number_beds'];
 
     public function location()
     {

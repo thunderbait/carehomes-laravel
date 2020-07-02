@@ -13,7 +13,7 @@ class CarehomeController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carehome::orderBy('name', 'asc');
+        $query = Carehome::with('group')->sortable();
 
         if ($searchTerm = $request->query('q')) {
             $query->where('name', 'LIKE', "%{$searchTerm}%");

@@ -50,13 +50,11 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Group</th>
-
+                    <th>@sortablelink('id')</th>
+                    <th>@sortablelink('name')</th>
+                    <th>@sortablelink('group.name', 'Group')</th>
                     <th>Location ID</th>
-                    <th>No.Beds</th>
-                    <th>Notes</th>
+                    <th>@sortablelink('number_beds', 'No. Beds')</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -67,7 +65,6 @@
                     <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</td>
                     <td>{{$carehome->location_id}}</td>
                     <td>{{$carehome->number_beds}}</td>
-                    <td>{{$carehome->notes}}</td>
                     <td><a href="{{route('carehomes.edit', $carehome->id)}}" class="btn btn-warning">Edit</a></td>
                 </tr>
                 @endforeach

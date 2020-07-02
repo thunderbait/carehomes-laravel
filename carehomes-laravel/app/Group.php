@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Group extends Model
 {
+    use Sortable;
 
+    public $sortable = ['name'];
     protected $fillable = ['name'];
 
     public function carehomes()
