@@ -42,30 +42,33 @@
             @endif
         </div>
 
+
+        <div class="row justify-content-center">
+            {{ $carehomes->appends($input)->links() }}
+        </div>
+
         <!-- CAREHOMES TABLE -->
         <div class="row">
             <table class="table table-striped">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Group</th>
-                        <th>Location ID</th>
-                        <th>No.Beds</th>
-                        <th>Notes</th>
-                    </tr>
+                <tr>
+                    <th>@sortablelink('id')</th>
+                    <th>@sortablelink('name')</th>
+                    <th>@sortablelink('group.name', 'Group')</th>
+                    <th>Location ID</th>
+                    <th>@sortablelink('number_beds', 'No. Beds')</th>
+                </tr>
                 </thead>
                 <tbody>
                 @foreach($carehomes as $carehome)
-                    <tr>
-                        <td>{{$carehome->id}}</td>
-                        <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a></td>
-                        <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</td>
-                        <td>{{$carehome->location_id}}</td>
-                        <td>{{$carehome->number_beds}}</td>
-                        <td>{{$carehome->notes}}</td>
-                        <td><a href="{{route('carehomes.edit', $carehome->id)}}" class="btn btn-warning">Edit</a></td>
-                    </tr>
+                <tr>
+                    <td>{{$carehome->id}}</td>
+                    <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a></td>
+                    <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</td>
+                    <td>{{$carehome->location_id}}</td>
+                    <td>{{$carehome->number_beds}}</td>
+                    <td><a href="{{route('carehomes.edit', $carehome->id)}}" class="btn btn-warning">Edit</a></td>
+                </tr>
                 @endforeach
                 </tbody>
             </table>
@@ -75,7 +78,7 @@
         <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
 
         <div class="row justify-content-center">
-            {{ $carehomes->links() }}
+            {{ $carehomes->appends($input)->links() }}
         </div>
     </div>
 
