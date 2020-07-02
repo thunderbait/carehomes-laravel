@@ -17,6 +17,7 @@
             <div class="col-3" style="margin-bottom:20px">
                 <h1>Carehomes</h1>
             </div>
+            
             <!-- SEARCH BAR -->
             <div class="col-9">
                 <form class="form-inline">
@@ -26,6 +27,7 @@
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </div>
+            <!-- SEARCH BAR END-->
         </div>
 
         <!-- ADVANCED SEARCH FILTERS -->
@@ -40,13 +42,13 @@
             @endif
         </div>
 
+
         <div class="row justify-content-center">
             {{ $carehomes->appends($input)->links() }}
         </div>
 
+        <!-- CAREHOMES TABLE -->
         <div class="row">
-
-
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -71,6 +73,7 @@
                 </tbody>
             </table>
         </div>
+        <!-- CAREHOMES TABLLE END -->
 
         <button class="btn btn-primary" onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
 
