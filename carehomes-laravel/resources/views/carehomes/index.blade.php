@@ -17,7 +17,7 @@
             <div class="col-3" style="margin-bottom:20px">
                 <h1>Carehomes</h1>
             </div>
-            
+
             <!-- SEARCH BAR -->
             <div class="col-9">
                 <form class="form-inline">
@@ -64,7 +64,7 @@
                 <tr>
                     <td>{{$carehome->id}}</td>
                     <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a></td>
-                    <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</td>
+                    <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</a></td>
                     <td>{{$carehome->location_id}}</td>
                     <td>{{$carehome->number_beds}}</td>
                     <td><a href="{{route('carehomes.edit', $carehome->id)}}" class="btn btn-warning">Edit</a></td>

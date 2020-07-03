@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Carehome;
 use App\Group;
 use App\LocalAuthority;
+use App\Location;
 use App\Type;
 use App\Specialism;
 use Illuminate\Http\Request;
@@ -108,7 +109,9 @@ class CarehomeController extends Controller
     public function edit($id)
     {
         $carehome = Carehome::findOrFail($id);
-        return view('carehomes.edit', compact('carehome'));
+        $locations = Location::orderBy('name', 'asc')->get();
+        $groups = Group::orderBy('name', 'asc')->get();
+        return view('carehomes.edit', compact('carehome', 'locations', 'groups'));
     }
 
     /**
