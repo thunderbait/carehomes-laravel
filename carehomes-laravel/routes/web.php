@@ -26,6 +26,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('carehomes', 'CarehomeController');
 
 //Groups
-Route::get('/groups', 'GroupController@index')->name('groups');
-
 Route::resource('groups', 'GroupController');
