@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Carehomes
+
+Route::resource('carehomes', 'CarehomeController');
+
+//Groups
+Route::get('/groups', 'GroupController@index')->name('groups');
+
+Route::resource('groups', 'GroupController');
