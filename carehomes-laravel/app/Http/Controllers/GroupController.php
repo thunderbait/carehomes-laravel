@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only([
+            'apiIndex',
+        ]);
+    }
+
     public function index(Request $request)
     {
 
         $query = Group::orderBy('id', 'asc');
-        
+
         if ($searchTerm = $request->query('q'))
         {
             $query->where('name', 'LIKE', "%{$searchTerm}%")
@@ -20,13 +28,23 @@ class GroupController extends Controller
                 $subquery->where('name', 'LIKE', "%{$searchTerm}%");
             });
         }
-            
+
         $groups = $query->paginate(25);
         return view('groups.index', compact('groups'));
     }
-    
+
+    public function apiIndex()
+    {
+        return Group::all()->map(function (Group $group) {
+            return $group->only([
+                'id',
+                'name'
+            ]);
+        });
+    }
+
     public function show($id)
-    {   
+    {
         $group = Group::findOrFail($id);
         return view('groups.show', compact('group'));
     }
@@ -72,13 +90,13 @@ class GroupController extends Controller
         ]);
 
         $group->name = $request->name;
-        
+
 
         $group->update();
 
         return redirect()->route('groups.show',compact('group'))->with('success','Group updated successfully');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
