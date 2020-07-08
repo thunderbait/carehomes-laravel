@@ -14,7 +14,7 @@ class CarehomeController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carehome::with('group')->sortable();
+        $query = Carehome::sortable();
 
         if ($searchTerm = $request->query('q')) {
             $query->where('name', 'LIKE', "%{$searchTerm}%");
@@ -26,11 +26,10 @@ class CarehomeController extends Controller
         $carehomes = $query->paginate(25);
 
         $local_authorities = LocalAuthority::orderBy('name', 'asc')->get();
-        $groups = Group::orderBy('name', 'asc')->get();
         $types = Type::orderBy('name', 'asc')->get();
         $specialisms = Specialism::orderBy('name', 'asc')->get();
 
-        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms', 'input', 'filtered'));
+        return view('carehomes.index', compact('carehomes', 'local_authorities', 'types', 'specialisms', 'input', 'filtered'));
     }
 
     /**
