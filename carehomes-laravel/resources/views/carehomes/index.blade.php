@@ -123,6 +123,35 @@
                 select.options[i].style.display = include ? '':'none';
             }
         }
+
+        new Vue({
+            el: '.groups-app',
+            data: function () {
+                return {
+                    groups: [],
+                    loading: false
+                }
+            },
+
+            methods: {
+
+                loadIfNotLoaded: function () {
+                    if (!this.groups.length && !this.loading)
+                        this.loadGroups();
+                },
+
+                loadGroups: function () {
+                    var that = this;
+                    this.loading = true;
+                    $.get('/groups-api', function (groups) {
+                        that.groups = groups;
+                    }).always(function () {
+                        that.loading = false;
+                    });
+                }
+            }
+        });
+
     </script>
 
 @endsection
