@@ -49,6 +49,7 @@
 
         <!-- CAREHOMES TABLE -->
         <div class="row">
+            <small>Total results: {{$carehomes->total()}}</small>
             <table class="table table-striped">
                 <thead>
                 <tr>

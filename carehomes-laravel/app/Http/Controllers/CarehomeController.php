@@ -21,7 +21,7 @@ class CarehomeController extends Controller
         }
 
         $input = $request->all();
-        $this->filter($request, $query);
+        $filtered = $this->filter($request, $query);
 
         $carehomes = $query->paginate(25);
 
@@ -30,7 +30,7 @@ class CarehomeController extends Controller
         $types = Type::orderBy('name', 'asc')->get();
         $specialisms = Specialism::orderBy('name', 'asc')->get();
 
-        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms', 'input'));
+        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms', 'input', 'filtered'));
     }
 
     /**
