@@ -2,7 +2,7 @@
 
 @section('content')
 
-    
+
 
     <div class="container">
         <div class="row">
@@ -20,17 +20,17 @@
             </ol>
         </nav>
     </div>
-    @include('groups.widgets.jumbotron')  
+    @include('groups.widgets.jumbotron')
 
 
-    
+
     <div class="container">
 
         <h2>Carehomes</h2>
 
         <div class="row">
             @foreach($group->carehomes as $carehome)
-            <div class="col-4 col-sm-12 col-md-4 col-xl-4">
+            <div class="col-3 col-sm-12 col-md-4 col-xl-4">
                 @include('groups.widgets.carehomes')
             </div>
             @endforeach

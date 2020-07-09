@@ -19,7 +19,7 @@ class GroupController extends Controller
     public function index(Request $request)
     {
 
-        $query = Group::orderBy('id', 'asc');
+        $query = Group::sortable();
 
         if ($searchTerm = $request->query('q'))
         {
@@ -29,8 +29,9 @@ class GroupController extends Controller
             });
         }
 
+        $input = $request->all();
         $groups = $query->paginate(25);
-        return view('groups.index', compact('groups'));
+        return view('groups.index', compact('groups', 'input'));
     }
 
     public function apiIndex()
@@ -47,21 +48,6 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($id);
         return view('groups.show', compact('group'));
-    }
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -91,7 +77,6 @@ class GroupController extends Controller
 
         $group->name = $request->name;
 
-
         $group->update();
 
         return redirect()->route('groups.show',compact('group'))->with('success','Group updated successfully');
@@ -106,6 +91,8 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        //
+        $group->delete();
+
+        return redirect()->route('groups.index')->with('success', 'Group deleted successfully');
     }
 }
