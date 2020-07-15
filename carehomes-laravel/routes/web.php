@@ -27,6 +27,3 @@ Route::resource('carehomes', 'CarehomeController');
 
 //Groups
 Route::resource('groups', 'GroupController');
-
-// TODO - once API auth has been implemented, move this into the api.php routes file
-Route::get('groups-api', 'GroupController@apiIndex');

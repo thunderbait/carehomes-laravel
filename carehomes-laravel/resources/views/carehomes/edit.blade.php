@@ -44,21 +44,14 @@
                     </select>
                 </div>
 
-                <div class="form-group groups-app">
-                    <label for="group">Group</label>
-                    <input id="search2" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select2')">
-                    <select id="select2" size="3" type="text" class="form-control" name="group" @click="loadIfNotLoaded">
-                        <option value="{{old($carehome->group_id)}}" selected>
-                            {{!empty($carehome->group) ? $carehome->group->name : "N/A"}}
-                        </option>
-                        <option v-if="loading" value="-1">
-                            Loading...
-                        </option>
-                        <option
-                            v-for="group in groups"
-                            :value="group.id"
-                            v-text="group.name">
-                        </option>
+                <div class="form-group">
+                    <label for="">Group</label>
+                    <input id="search1" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select1')">
+                    <select  id="select1" size="3" type="text" class="form-control" name="group_id">
+                        <option value="{{ old('group_id', $carehome->group_id) }}" selected>{{ !empty($carehome->group) ? $carehome->group->name : "N/A"}}</option>
+                        @foreach ($groups as $group)
+                            <option value="{{ $group->id }}">{{ $group->name }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -82,34 +75,6 @@
                 select.options[i].style.display = include ? '':'none';
             }
         }
-
-        new Vue({
-            el: '.groups-app',
-            data: function () {
-                return {
-                    groups: [],
-                    loading: false
-                }
-            },
-
-            methods: {
-
-                loadIfNotLoaded: function () {
-                    if (!this.groups.length && !this.loading)
-                        this.loadGroups();
-                },
-
-                loadGroups: function () {
-                    var that = this;
-                    this.loading = true;
-                    $.get('/groups-api', function (groups) {
-                        that.groups = groups;
-                    }).always(function () {
-                        that.loading = false;
-                    });
-                }
-            }
-        });
     </script>
 
 @endsection

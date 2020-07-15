@@ -12,14 +12,14 @@
         </nav>
     </div>
 
-    <div class="container">
+    <div class="container col-11">
         <div class="row">
-            <div class="col-5 col-md-3 col-lg-3" style="margin-bottom:20px">
+            <div class="col-3" style="margin-bottom:20px">
                 <h1>Carehomes</h1>
             </div>
 
             <!-- SEARCH BAR -->
-            <div class="col-5 col-md-9 col-lg-9">
+            <div class="col-9">
                 <form class="form-inline">
                     <div class="form-group">
                         <input class="form-control" type="search" name="q" placeholder="Search here...">
@@ -31,8 +31,8 @@
         </div>
 
         <!-- ADVANCED SEARCH FILTERS -->
-    @include('carehomes.widgets.filter')
-    <!-- END ADVANCED SEARCH FILTERS -->
+        @include('carehomes.widgets.filter')
+        <!-- END ADVANCED SEARCH FILTERS -->
 
         <div class="row">
             @if(session()->get('success'))
@@ -42,41 +42,33 @@
             @endif
         </div>
 
+
         <div class="row justify-content-center">
             {{ $carehomes->appends($input)->links() }}
         </div>
 
         <!-- CAREHOMES TABLE -->
         <div class="row">
-            <small>Results {{$carehomes->firstItem()}}-{{$carehomes->lastItem()}} out of {{$carehomes->total()}}</small>
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>@sortablelink('id')</th>
                     <th>@sortablelink('name')</th>
                     <th>@sortablelink('group.name', 'Group')</th>
-                    <th>Local Authority</th>
-                    <th style="text-align: center">@sortablelink('number_beds', 'No. Beds')</th>
-                    <th></th>
-                    <th></th>
+                    <th>Location ID</th>
+                    <th>@sortablelink('number_beds', 'No. Beds')</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($carehomes as $carehome)
-                    <tr>
-                        <td>{{$carehome->id}}</td>
-                        <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a></td>
-                        <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</a></td>
-                        <td>{{!empty($carehome->location->localAuthority) ? $carehome->location->localAuthority->name : ""}}</td>
-                        <td style="text-align: center">{{$carehome->number_beds}}</td>
-                        @if(Auth::user())
-                            <td><a href="{{route('carehomes.edit', $carehome->id)}}"><i class="fa fa-pencil-square-o" style="font-size:36px; color:black;"></i></a></td>
-                            <td><a href="{{'carehomes.destroy', $carehome->id}}"><i class="fa fa-trash" aria-hidden="true" style="font-size:36px; color:black;"></i></a></td>
-                        @else
-                            <td></td>
-                            <td></td>
-                        @endif
-                    </tr>
+                <tr>
+                    <td>{{$carehome->id}}</td>
+                    <td><a href="{{route('carehomes.show', $carehome->id)}}">{{$carehome->name}}</a></td>
+                    <td><a href="{{route('groups.show', $carehome->group_id)}}">{{ !empty($carehome->group) ? $carehome->group->name : ""}}</a></td>
+                    <td>{{$carehome->location_id}}</td>
+                    <td>{{$carehome->number_beds}}</td>
+                    <td><a href="{{route('carehomes.edit', $carehome->id)}}" class="btn btn-warning">Edit</a></td>
+                </tr>
                 @endforeach
                 </tbody>
             </table>
@@ -90,6 +82,7 @@
         </div>
     </div>
 
+    <!--  TODO PUT IN ITS OWN JS FILE, INSIDE - /RESOURCES/JS - USED IN EVENTS/ORGS/VENUES INDEX & ORGS SHOW -->
     <script>
         //Get the button:
         mybutton = document.getElementById("myBtn");
@@ -129,35 +122,6 @@
                 select.options[i].style.display = include ? '':'none';
             }
         }
-
-        new Vue({
-            el: '.groups-app',
-            data: function () {
-                return {
-                    groups: [],
-                    loading: false
-                }
-            },
-
-            methods: {
-
-                loadIfNotLoaded: function () {
-                    if (!this.groups.length && !this.loading)
-                        this.loadGroups();
-                },
-
-                loadGroups: function () {
-                    var that = this;
-                    this.loading = true;
-                    $.get('/groups-api', function (groups) {
-                        that.groups = groups;
-                    }).always(function () {
-                        that.loading = false;
-                    });
-                }
-            }
-        });
-
     </script>
 
 @endsection

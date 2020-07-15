@@ -30,9 +30,3 @@ input {
 #number_beds {
     margin-bottom: 10px;
 }
-
-small {
-    position: absolute;
-    right: 70px;
-    top: 270px;
-}

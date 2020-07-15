@@ -8,19 +8,11 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth')->only([
-            'apiIndex',
-        ]);
-    }
-
     public function index(Request $request)
     {
 
-        $query = Group::sortable();
-
+        $query = Group::orderBy('id', 'asc');
+        
         if ($searchTerm = $request->query('q'))
         {
             $query->where('name', 'LIKE', "%{$searchTerm}%")
@@ -28,26 +20,30 @@ class GroupController extends Controller
                 $subquery->where('name', 'LIKE', "%{$searchTerm}%");
             });
         }
-
-        $input = $request->all();
+            
         $groups = $query->paginate(25);
-        return view('groups.index', compact('groups', 'input'));
+        return view('groups.index', compact('groups'));
     }
-
-    public function apiIndex()
-    {
-        return Group::all()->map(function (Group $group) {
-            return $group->only([
-                'id',
-                'name'
-            ]);
-        });
-    }
-
+    
     public function show($id)
-    {
+    {   
         $group = Group::findOrFail($id);
         return view('groups.show', compact('group'));
+    }
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -76,12 +72,13 @@ class GroupController extends Controller
         ]);
 
         $group->name = $request->name;
+        
 
         $group->update();
 
         return redirect()->route('groups.show',compact('group'))->with('success','Group updated successfully');
     }
-
+    
 
     /**
      * Remove the specified resource from storage.
@@ -91,8 +88,6 @@ class GroupController extends Controller
      */
     public function destroy(Group $group)
     {
-        $group->delete();
-
-        return redirect()->route('groups.index')->with('success', 'Group deleted successfully');
+        //
     }
 }

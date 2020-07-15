@@ -15,20 +15,15 @@
                 </select>
             </div>
             <!-- Input for Group (Dropdown) -->
-            <div class="form-group col-md-3 groups-app">
+            <div class="form-group col-md-3">
                 <label for="group">Group</label>
                 <input id="search2" type="text" class="form-control" placeholder="Search" onkeyup="filterList(this.value, 'select2')">
-                <select id="select2" size="3" type="text" class="form-control" name="group" @click="loadIfNotLoaded">
-                    <option v-if="loading" value="-1">
-                        Loading...
-                    </option>
-                    <option
-                        v-for="group in groups"
-                        :value="group.id"
-                        v-text="group.name"></option>
+                <select  id="select2" size="3" type="text" class="form-control" name="group">
+                    @foreach ($groups as $group)
+                        <option value="{{ $group->id }}">{{ $group->name }}</option>
+                    @endforeach
                 </select>
             </div>
-
             <!-- Input for Minimum Number of Beds -->
             <div id="mins" class="form-group col-md-3">
                 <label for="number_beds">Min. Number of Beds</label>

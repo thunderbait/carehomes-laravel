@@ -35,26 +35,24 @@
         </div>
 
         <div class="row justify-content-center">
-            {{ $groups->appends($input)->links() }}
+                {{ $groups->links() }}
         </div>
 
         <div class="row">
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>@sortablelink('id')</th>
-                    <th>@sortablelink('name')</th>
-                    <th style="text-align: center">No. of Carehomes</th>
+                    <th>ID</th>
+                    <th>Name</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($groups as $group)
-                    <tr>
-                        <td>{{$group->id}}</td>
-                        <td><a href="{{route('groups.show', $group->id)}}">{{$group->name}}</a></td>
-                        <td style="text-align: center">{{$group->numOfHomes()}}</td>
+                     @foreach($groups as $group)
+                	<tr>
+                        <td><a href="{{route('groups.show', $group->id)}}">{{$group->id}}</td>
+                        <td>{{$group->name}}</td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -62,7 +60,7 @@
         <button onclick="topFunction()" id="myBtn" title="Go to top">Back to top</button>
 
         <div class="row justify-content-center">
-            {{ $groups->appends($input)->links() }}
+            {{ $groups->links() }}
         </div>
     </div>
 
