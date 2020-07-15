@@ -14,23 +14,22 @@ class CarehomeController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Carehome::with('group')->sortable();
+        $query = Carehome::sortable();
 
         if ($searchTerm = $request->query('q')) {
             $query->where('name', 'LIKE', "%{$searchTerm}%");
         }
 
         $input = $request->all();
-        $this->filter($request, $query);
+        $filtered = $this->filter($request, $query);
 
         $carehomes = $query->paginate(25);
 
         $local_authorities = LocalAuthority::orderBy('name', 'asc')->get();
-        $groups = Group::orderBy('name', 'asc')->get();
         $types = Type::orderBy('name', 'asc')->get();
         $specialisms = Specialism::orderBy('name', 'asc')->get();
 
-        return view('carehomes.index', compact('carehomes', 'local_authorities', 'groups', 'types', 'specialisms', 'input'));
+        return view('carehomes.index', compact('carehomes', 'local_authorities', 'types', 'specialisms', 'input', 'filtered'));
     }
 
     /**
@@ -41,7 +40,7 @@ class CarehomeController extends Controller
      */
     public function show($id)
     {
-        $carehome = Carehome::findOrFail($id);
+        $carehome = Carehome::with('types', 'specialisms')->findOrFail($id);
         return view('carehomes.show', compact('carehome'));
     }
 
@@ -74,12 +73,12 @@ class CarehomeController extends Controller
                 });
             })
             ->when($type2, function ($query, $type2) {
-                return $query->whereHas('types', function ($query) use ($type2) {
+                return $query->orWhereHas('types', function ($query) use ($type2) {
                     $query->where('type_id', $type2);
                 });
             })
             ->when($type3, function ($query, $type3) {
-                return $query->whereHas('types', function ($query) use ($type3) {
+                return $query->orWhereHas('types', function ($query) use ($type3) {
                     $query->where('type_id', $type3);
                 });
             })
@@ -89,12 +88,12 @@ class CarehomeController extends Controller
                 });
             })
             ->when($specialism2, function ($query, $specialism2) {
-                return $query->whereHas('specialisms', function ($query) use ($specialism2) {
+                return $query->orWhereHas('specialisms', function ($query) use ($specialism2) {
                     $query->where('specialism_id', $specialism2);
                 });
             })
             ->when($specialism3, function ($query, $specialism3) {
-                return $query->whereHas('specialisms', function ($query) use ($specialism3) {
+                return $query->orWhereHas('specialisms', function ($query) use ($specialism3) {
                     $query->where('specialism_id', $specialism3);
                 });
             });
@@ -110,8 +109,7 @@ class CarehomeController extends Controller
     {
         $carehome = Carehome::findOrFail($id);
         $locations = Location::orderBy('name', 'asc')->get();
-        $groups = Group::orderBy('name', 'asc')->get();
-        return view('carehomes.edit', compact('carehome', 'locations', 'groups'));
+        return view('carehomes.edit', compact('carehome', 'locations'));
     }
 
     /**
@@ -150,7 +148,9 @@ class CarehomeController extends Controller
      */
     public function destroy(Carehome $carehome)
     {
-        //
+        $carehome->delete();
+
+        return redirect()->route('carehomes.index')->with('success', 'Carehome deleted successfully');
     }
 
 }
