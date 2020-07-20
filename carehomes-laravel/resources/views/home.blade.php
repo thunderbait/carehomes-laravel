@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
+    @if (Session::get('success'))
     <div class="row justify-content-center">
         <div class="col-md-4">
-            @if (Session::get('success'))
             <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-header">
                     <img src="..." class="rounded mr-2" alt="...">
@@ -17,9 +17,9 @@
                     {{session('success')}}
                 </div>
             </div>
-            @endif
+        </div>
     </div>
-
+    @endif
     <br>
 
     <h2> Toolz </h2>
